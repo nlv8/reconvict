@@ -2,9 +2,9 @@
 
 const path = require('path');
 const http = require('http');
-const convict = require('../lib/convict.js');
+const reconvict = require('../lib/reconvict.js');
 
-let conf = convict({
+let conf = reconvict({
   ip: {
     doc: 'The IP Address to bind.',
     format: 'ipaddress',

@@ -3,10 +3,10 @@
 const path = require('path');
 require('must');
 
-describe('convict schema', function() {
-  const convict = require('../');
+describe('reconvict schema', function() {
+  const reconvict = require('../');
   let conf;
-  let conf2 = convict({
+  let conf2 = reconvict({
     foo: {
       none: {
         format: String,
@@ -16,22 +16,22 @@ describe('convict schema', function() {
   });
 
   it('must parse a config specification from a file', function() {
-    conf = convict(path.join(__dirname, 'schema.json'));
+    conf = reconvict(path.join(__dirname, 'schema.json'));
   });
 
   it('must parse a specification with built-in formats', function() {
-    conf = convict(path.join(__dirname, 'cases/schema-built-in-formats.json'));
+    conf = reconvict(path.join(__dirname, 'cases/schema-built-in-formats.json'));
   });
 
   it('must throw when parsing a specification that reuses a command-line argument', function() {
-    (function() { convict({
+    (function() { reconvict({
       foo: {default: 'a', arg: 'BAZ'},
       bar: {default: 'a', arg: 'BAZ'}
     })}).must.throw();
   });
 
   it('must accept process arguments and environment variables as parameters', function() {
-    conf = convict({
+    conf = reconvict({
       foo: {
         format: String,
         default: 'DEFAULT',
@@ -54,7 +54,7 @@ describe('convict schema', function() {
   describe('after being parsed', function() {
 
     beforeEach(function() {
-      conf = convict(path.join(__dirname, 'schema.json'));
+      conf = reconvict(path.join(__dirname, 'schema.json'));
     });
 
     it('must be valid', function() {
@@ -201,7 +201,7 @@ describe('convict schema', function() {
 
       describe('when acting on an Object property', function() {
         beforeEach(function() {
-          conf = convict(path.join(__dirname, 'cases/schema-built-in-formats.json'));
+          conf = reconvict(path.join(__dirname, 'cases/schema-built-in-formats.json'));
         });
 
         it('must report the default value of the property', function() {
@@ -242,8 +242,8 @@ describe('convict schema', function() {
   });
 });
 
-describe('convict used multiple times on one schema', function() {
-  const convict = require('../');
+describe('reconvict used multiple times on one schema', function() {
+  const reconvict = require('../');
   let schema = {
     publicServerAddress:  {
       doc: 'The public-facing server address',
@@ -252,7 +252,7 @@ describe('convict used multiple times on one schema', function() {
     }
   };
   (function() {
-    convict(schema);
-    convict(schema);
+    reconvict(schema);
+    reconvict(schema);
   }).must.not.throw();
 });

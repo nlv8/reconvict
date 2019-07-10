@@ -1,6 +1,6 @@
 'use strict';
 
-const convict = require('../../lib/convict'),
+const reconvict = require('../../lib/reconvict'),
   path = require('path');
 
 /*eslint no-process-exit: 0*/
@@ -9,8 +9,8 @@ process.on('message', function(spec) {
   try {
     let s = require(path.join(__dirname, '../cases', spec.spec));
     if (s.formats)
-      convict.addFormats(s.formats);
-    let conf = convict(s.conf).loadFile(spec.config_files).validate();
+      reconvict.addFormats(s.formats);
+    let conf = reconvict(s.conf).loadFile(spec.config_files).validate();
     process.send({
       result: conf.get(),
       string: conf.toString(),

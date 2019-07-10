@@ -1,11 +1,11 @@
 'use strict'
 
 describe('deep nested tree structure', function() {
-  const convict = require('../');
+  const reconvict = require('../');
   let conf;
 
   it('must parse a deep nested config specification', function() {
-    conf = convict({
+    conf = reconvict({
       db: {
         name: {
           format: String,

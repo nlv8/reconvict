@@ -4,13 +4,13 @@ const expect = require('must');
 const moment = require('moment');
 const validator = require('validator');
 
-describe('convict formats', function() {
-  const convict = require('../');
+describe('reconvict formats', function() {
+  const reconvict = require('../');
   let conf;
 
   it('must parse a config specification', function() {
 
-    convict.addFormat({
+    reconvict.addFormat({
       name: 'float-percent',
       validate: function(val) {
         if (val !== 0 && (!val || val > 1 || val < 0)) {
@@ -22,7 +22,7 @@ describe('convict formats', function() {
       }
     });
 
-    convict.addFormats({
+    reconvict.addFormats({
       prime: {
         validate: function(val) {
           function isPrime(n) {
@@ -47,7 +47,7 @@ describe('convict formats', function() {
       }
     });
 
-    conf = convict({
+    conf = reconvict({
       foo: {
         enum: {
           format: ['foo', 'bar'],
@@ -187,7 +187,7 @@ describe('convict formats', function() {
 
     describe('port_or_windows_named_pipe', function() {
 
-      let conf = convict({
+      let conf = reconvict({
         port: {
           format: 'port_or_windows_named_pipe',
           default: '1234',
@@ -226,7 +226,7 @@ describe('convict formats', function() {
 
       it('must throw for invalid ports', function() {
 
-        let conf = convict({
+        let conf = reconvict({
           invalid: {
             format: 'port_or_windows_named_pipe',
             default: '235235452355',
@@ -239,7 +239,7 @@ describe('convict formats', function() {
 
       it('must throw for invalid pipes', function() {
 
-        let conf = convict({
+        let conf = reconvict({
           invalid: {
             format: 'port_or_windows_named_pipe',
             default: '\\.pipe\\test',
@@ -256,7 +256,7 @@ describe('convict formats', function() {
 
   it('must throw with unknown format', function() {
     (function() {
-      convict({
+      reconvict({
         foo: {
           format: 'unknown',
           default: 'bar'

@@ -2,12 +2,12 @@
 
 require('must');
 
-describe('convict', function() {
-  const convict = require('../');
+describe('reconvict', function() {
+  const reconvict = require('../');
   let conf;
 
   it('must parse a config specification', function() {
-    conf = convict({
+    conf = reconvict({
       env: {
         format: ['bar', 'baz', 'foo'],
         default: 'bar',

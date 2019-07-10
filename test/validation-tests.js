@@ -4,8 +4,8 @@ const path = require('path');
 require('must');
 
 describe('configuration files contain properties not declared in the schema', function() {
-  const convict = require('../');
-  let config = convict({
+  const reconvict = require('../');
+  let config = reconvict({
     foo: {
       doc: 'testing',
       format: String,
@@ -86,11 +86,11 @@ describe('configuration files contain properties not declared in the schema', fu
   });
   it('must not break when a failed validation follows an undeclared property and must display warnings', function() {
     (function() {
-      convict.addFormat('foo', function(val) {
+      reconvict.addFormat('foo', function(val) {
         if (val !== 0) { throw new Error('Validation error'); }
       });
 
-      let config = convict({
+      let config = reconvict({
         test2: {
           one: { default: 0 },
           two: {
@@ -109,7 +109,7 @@ describe('configuration files contain properties not declared in the schema', fu
   });
   it('must not break on consecutive overrides', function() {
     (function() {
-      let config = convict({
+      let config = reconvict({
         object: {
           doc: 'testing',
           format: Object,
@@ -126,10 +126,10 @@ describe('configuration files contain properties not declared in the schema', fu
 });
 
 describe('setting specific values', function() {
-  const convict = require('../');
+  const reconvict = require('../');
   it('must not show warning for undeclared nested object values', function() {
     (function() {
-      let config = convict({
+      let config = reconvict({
         object: {
           doc: 'testing',
           format: Object,
@@ -142,7 +142,7 @@ describe('setting specific values', function() {
   });
   it('must show warning for undeclared property names similar to nested declared property name', function() {
     (function() {
-      let config = convict({
+      let config = reconvict({
         parent: {
           object: {
             doc: 'testing',
@@ -158,7 +158,7 @@ describe('setting specific values', function() {
   });
   it('must show warning for undeclared property names starting with declared object properties', function() {
     (function() {
-      let config = convict({
+      let config = reconvict({
         object: {
           doc: 'testing',
           format: Object,
@@ -173,10 +173,10 @@ describe('setting specific values', function() {
 });
 
 describe('schema contains an object property with a custom format', function() {
-  const convict = require('../');
+  const reconvict = require('../');
   it('must throw if a nested object property has an undeclared format', function() {
     (function() {
-      const config = convict({
+      const config = reconvict({
         object: {
           doc: 'testing',
           format: 'undefinedFormat',
@@ -191,8 +191,8 @@ describe('schema contains an object property with a custom format', function() {
   });
   it('must not throw if an object property has a nested value and a custom format', function() {
     (function() {
-      convict.addFormat('foo', function() {});
-      const config = convict({
+      reconvict.addFormat('foo', function() {});
+      const config = reconvict({
         object: {
           doc: 'testing',
           format: 'foo',
@@ -207,8 +207,8 @@ describe('schema contains an object property with a custom format', function() {
   });
   it('must not throw if a declared object property with a custom format and with nested values is set', function() {
     (function() {
-      convict.addFormat('foo', function() {});
-      const config = convict({
+      reconvict.addFormat('foo', function() {});
+      const config = reconvict({
         object: {
           doc: 'testing',
           format: 'foo',
@@ -225,7 +225,7 @@ describe('schema contains an object property with a custom format', function() {
 
   it.skip("must not throw if an object's default value property name contains a period", function() {
     (function() {
-      const config = convict({
+      const config = reconvict({
         object: {
           doc: 'default value contains property name that contains a period',
           format: Object,
