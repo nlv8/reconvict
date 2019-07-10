@@ -1,7 +1,7 @@
 {
-  "author": "Lloyd Hilaiel <lloyd@hilaiel.com> (http://lloyd.io)",
-  "name": "convict",
-  "description": "Featureful configuration management library for Node.js (nested structure, schema validation, etc.)",
+  "author": "Attila Bagossy <attila@nlv8.com>",
+  "name": "@nlv8/reconvict",
+  "description": "Drop-in replacement for node-convict with runtime configuration reloading!",
   "keywords": [
     "configuration",
     "config",
@@ -10,14 +10,14 @@
     "nested",
     "validation"
   ],
-  "version": "5.0.0",
+  "version": "0.1.0",
   "license": "Apache-2.0",
-  "homepage": "https://github.com/mozilla/node-convict",
+  "homepage": "https://github.com/nlv8/reconvict",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mozilla/node-convict.git"
+    "url": "https://github.com/nlv8/reconvict.git"
   },
-  "bugs": "https://github.com/mozilla/node-convict/issues",
+  "bugs": "https://github.com/nlv8/reconvict/issues",
   "engines": {
     "node": ">=6"
   },
