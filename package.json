@@ -1,7 +1,7 @@
 {
   "author": "Attila Bagossy <attila@nlv8.com>",
   "name": "@nlv8/reconvict",
-  "description": "Drop-in replacement for node-convict with runtime configuration reloading!",
+  "description": "Drop-in replacement for node-convict with runtime configuration reloading.",
   "keywords": [
     "configuration",
     "config",
