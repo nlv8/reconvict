@@ -6,6 +6,7 @@ Drop-in replacement for [node-convict](https://github.com/mozilla/node-convict) 
 
 * **Live configuration objects**: Getting nested objects from the configuration will return live objects that reflect configuration changes.
 * **Emission of configuration changes**: A configuration is an `EventEmitter` that will emit modified keys upon changes.
+* **Reloaders**: Built-in support for detecting changes in configuration sources and actualizing the runtime configuration.
 * And everything supported by *node-convict*:
   * **Loading and merging**,
   * **Nested structure**,
